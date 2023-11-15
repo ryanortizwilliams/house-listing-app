@@ -67,12 +67,45 @@
     <h2 ng-show="showMessage === true">Secret Message</h2>
     <input type="text" placeholder="leave a message" ng-model="message" />
     <h2>{{message}}</h2>
-    <div class="card m-2" ng-repeat="listing in listings">
+
+    <!-- TODO: Setup layout for each cards -->
+    <!-- TODO: Allow for toggling to see more information -->
+
+    <div class="container-fluid">
+      <!-- single card -->
+      <div
+        ng-repeat="listing in listings"
+        class="card m-3"
+        style="width: 18rem"
+      >
+        <img
+          class="card-img-top"
+          ng-src="images/{{listing.image}}.jpg"
+          alt="Listing image"
+        />
+        <div class="card-body">
+          <h5>{{listing.address}}</h5>
+          <p class="card-text"><strong>Type:</strong>{{listing.type}}</p>
+          <p class="card-text">
+            <strong>Description: </strong> {{listing.type}}
+          </p>
+          <p class="card-text">
+            <strong>Price: </strong> {{listing.price | currency}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="card m-2" ng-repeat="listing in listings">
+      <img
+        class="card-img-top"
+        ng-src="images/{{listing.image}}.jpg"
+        alt="Listing image"
+      />
       <h3>{{listing.address}}</h3>
       <p><strong>Type: </strong> {{listing.type}}</p>
       <p><strong>Description: </strong> {{listing.type}}</p>
       <p><strong>Price: </strong> {{listing.price | currency}}</p>
-    </div>
+    </div> -->
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <script
