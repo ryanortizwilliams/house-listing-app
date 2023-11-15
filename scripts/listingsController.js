@@ -1,6 +1,14 @@
 angular
   .module("listingsApp")
   .controller("listingsController", function ($scope, listingsFactory) {
-    $scope.hello = "Hello World!";
-    $scope.listings = listingsFactory.getListings();
+    $scope.listings;
+
+    listingsFactory
+      .getListings()
+      .then(function (response) {
+        $scope.listings = response.data;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   });
