@@ -11,4 +11,10 @@ angular
       .catch(function (error) {
         console.log(error);
       });
+
+    $scope.showMessage = false;
+    $scope.sayHello = function () {
+      console.log("Hello");
+      $scope.showMessage = true;
+    };
   });

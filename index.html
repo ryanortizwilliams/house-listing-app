@@ -13,6 +13,12 @@
     />
   </head>
   <body ng-app="listingsApp" ng-controller="listingsController">
+    <button class="btn btn-primary" ng-click="showMessage = !showMessage">
+      Toggle Message
+    </button>
+    <h2 ng-show="showMessage === true">Secret Message</h2>
+    <input type="text" placeholder="leave a message" ng-model="message" />
+    <h2>{{message}}</h2>
     <div class="card m-2" ng-repeat="listing in listings">
       <h3>{{listing.address}}</h3>
       <p><strong>Type: </strong> {{listing.type}}</p>
