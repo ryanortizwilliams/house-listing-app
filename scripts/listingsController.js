@@ -6,6 +6,7 @@ angular
       min: 0,
       max: 1000000,
     };
+    $scope.addListing = false;
 
     listingsFactory
       .getListings()
