@@ -25,6 +25,14 @@ angular
       $scope.editHouse = false;
     };
 
+    // delete listing
+    $scope.deleteListing = function (listing) {
+      const index = $scope.listings.indexOf(listing);
+      $scope.listings.splice(index, 1);
+      $scope.existingListing = {};
+      $scope.editHouse = false;
+    };
+
     listingsFactory
       .getListings()
       .then(function (response) {

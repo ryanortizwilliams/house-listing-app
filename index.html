@@ -315,11 +315,14 @@
               </div>
             </div>
             <div class="my-2">
-              <button
-                class="btn btn-primary listing-btn"
-                ng-click="saveListingEdit()"
-              >
+              <button class="btn btn-primary" ng-click="saveListingEdit()">
                 Confirm
+              </button>
+              <button
+                class="btn btn-danger"
+                ng-click="deleteListing(existingListing)"
+              >
+                Delete
               </button>
             </div>
           </div>
