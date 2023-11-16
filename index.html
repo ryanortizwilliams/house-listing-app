@@ -15,7 +15,7 @@
   <body ng-app="listingsApp" ng-controller="listingsController">
     <nav class="navbar bg-primary navbar-dark navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">House Listings</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -61,51 +61,120 @@
         </div>
       </div>
     </nav>
-    <button class="btn btn-primary" ng-click="showMessage = !showMessage">
+    <!-- Examples of primary ng- tags -->
+    <!-- <button class="btn btn-primary" ng-click="showMessage = !showMessage">
       Toggle Message
     </button>
     <h2 ng-show="showMessage === true">Secret Message</h2>
     <input type="text" placeholder="leave a message" ng-model="message" />
-    <h2>{{message}}</h2>
-
-    <!-- TODO: Setup layout for each cards -->
-    <!-- TODO: Allow for toggling to see more information -->
-
+    <h2>{{message}}</h2> -->
     <div class="container-fluid">
-      <!-- single card -->
-      <div
-        ng-repeat="listing in listings"
-        class="card m-3"
-        style="width: 18rem"
-      >
-        <img
-          class="card-img-top"
-          ng-src="images/{{listing.image}}.jpg"
-          alt="Listing image"
-        />
-        <div class="card-body">
-          <h5>{{listing.address}}</h5>
-          <p class="card-text"><strong>Type:</strong>{{listing.type}}</p>
-          <p class="card-text">
-            <strong>Description: </strong> {{listing.type}}
-          </p>
-          <p class="card-text">
-            <strong>Price: </strong> {{listing.price | currency}}
-          </p>
+      <div class="row bg-success my-3 p-4">
+        <div class="col-6">
+          <div class="input-group">
+            <span class="input-group-text">Min Price</span>
+            <select
+              name="minPrice"
+              id="minPrice"
+              ng-model="priceInfo.min"
+              class="form-select"
+            >
+              <option value="100000">$100,000</option>
+              <option value="200000">$200,000</option>
+              <option value="300000">$300,000</option>
+              <option value="400000">$400,000</option>
+              <option value="500000">$500,000</option>
+              <option value="600000">$600,000</option>
+              <option value="700000">$700,000</option>
+              <option value="800000">$800,000</option>
+              <option value="900000">$900,000</option>
+              <option value="1000000">$1,000,000</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="input-group">
+            <span class="input-group-text">Max Price</span>
+            <select
+              name="maxPrice"
+              id="maxPrice"
+              ng-model="priceInfo.max"
+              class="form-select"
+            >
+              <option value="100000">$100,000</option>
+              <option value="200000">$200,000</option>
+              <option value="300000">$300,000</option>
+              <option value="400000">$400,000</option>
+              <option value="500000">$500,000</option>
+              <option value="600000">$600,000</option>
+              <option value="700000">$700,000</option>
+              <option value="800000">$800,000</option>
+              <option value="900000">$900,000</option>
+              <option value="1000000">$1,000,000</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
-    <!-- <div class="card m-2" ng-repeat="listing in listings">
-      <img
-        class="card-img-top"
-        ng-src="images/{{listing.image}}.jpg"
-        alt="Listing image"
-      />
-      <h3>{{listing.address}}</h3>
-      <p><strong>Type: </strong> {{listing.type}}</p>
-      <p><strong>Description: </strong> {{listing.type}}</p>
-      <p><strong>Price: </strong> {{listing.price | currency}}</p>
-    </div> -->
+
+    <div class="container-fluid">
+      <div class="row">
+        <div
+          class="col-lg-4"
+          ng-repeat="listing in listings | listingsFilter:priceInfo"
+        >
+          <!-- single card -->
+          <div class="card m-3">
+            <img
+              class="card-img-top"
+              ng-src="images/{{listing.image}}.jpg"
+              alt="Listing image"
+            />
+            <div class="card-body">
+              <h5>{{listing.address}}</h5>
+              <p class="card-text">
+                <span class="badge bg-primary">{{listing.type}}</span>
+              </p>
+              <p class="card-text">
+                <strong>Description: </strong>
+                {{listing.description}}
+              </p>
+              <p class="card-text">
+                <strong>Price: </strong> {{listing.price | currency}}
+              </p>
+              <button
+                class="btn-sm"
+                ng-hide="showDetails === true"
+                ng-click="showDetails = !showDetails"
+              >
+                Details
+              </button>
+              <div class="details" ng-show="showDetails === true">
+                <div class="pb-2">
+                  <small
+                    ><strong>Bedrooms: </strong
+                    >{{listing.details.bedrooms}}</small
+                  >
+                  <small
+                    ><strong>Bathrooms: </strong
+                    >{{listing.details.bathrooms}}</small
+                  >
+                  <small><strong>Area: </strong>{{listing.details.area}}</small>
+                </div>
+
+                <button
+                  class="btn-sm"
+                  ng-show="showDetails === true"
+                  ng-click="showDetails = !showDetails"
+                >
+                  Hide Details
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   <script
@@ -116,4 +185,5 @@
   <script src="app.js"></script>
   <script src="scripts/listingsController.js"></script>
   <script src="scripts/listingsFactory.js"></script>
+  <script src="scripts/listingsFilter.js"></script>
 </html>

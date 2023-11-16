@@ -2,6 +2,10 @@ angular
   .module("listingsApp")
   .controller("listingsController", function ($scope, listingsFactory) {
     $scope.listings;
+    $scope.priceInfo = {
+      min: 0,
+      max: 1000000,
+    };
 
     listingsFactory
       .getListings()
