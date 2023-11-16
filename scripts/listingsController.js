@@ -7,6 +7,12 @@ angular
       max: 1000000,
     };
     $scope.addListing = false;
+    $scope.newListing = {};
+    $scope.addHouse = function (newListing) {
+      newListing.image = "default-crib";
+      $scope.listings.push(newListing);
+      $scope.newListing = {};
+    };
 
     listingsFactory
       .getListings()
