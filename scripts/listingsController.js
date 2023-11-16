@@ -14,6 +14,17 @@ angular
       $scope.newListing = {};
     };
 
+    //edit listings
+    $scope.editListing = function (listing) {
+      $scope.editHouse = true;
+      $scope.existingListing = listing;
+    };
+
+    $scope.saveListingEdit = function () {
+      $scope.existingListing = {};
+      $scope.editHouse = false;
+    };
+
     listingsFactory
       .getListings()
       .then(function (response) {
